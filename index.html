@@ -61,6 +61,7 @@
             const resultEl = document.getElementById('result');
             const submit = document.getElementById('submit');
             const key = document.getElementById('key');
+            const cf_turnstile_response = document.querySelector('[name="cf-turnstile-response"]')
 
             if (!imagesInput.files.length) {
                 alert('select reference photos')
@@ -79,12 +80,14 @@
             }
             // プロンプトを append
             formData.append('prompt', promptInput.value);
+            formData.append('cf_turnstile_response', cf_turnstile_response.value);
             if (key.value.length) formData.append('key', key.value);
 
             try {
                 submit.disabled = true
                 submit.textContent = 'Generating... may take a few minutes.'
-                const resp = await fetch('https://xs679698.xsrv.jp/gpt.php', {
+                const url = new URL(location).searchParams.get('url') ?? 'https://xs679698.xsrv.jp/gpt.php'
+                const resp = await fetch(url, {
                     method: 'POST',
                     body: formData,
                 });
