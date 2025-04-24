@@ -83,7 +83,7 @@
                     method: 'POST',
                     body: formData,
                 });
-                if (!ok) {
+                if (!resp.ok) {
                     alert('you are rate limit exceeded. please set up your key or ')
                 }
                 // レスポンスを JSON として読み込み
