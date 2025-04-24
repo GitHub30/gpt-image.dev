@@ -79,7 +79,7 @@
 
             try {
                 submit.disabled = true
-                submit.textContent = 'Generating...'
+                submit.textContent = 'Generating... may take a few minutes.'
                 const resp = await fetch('https://xs679698.xsrv.jp/gpt.php', {
                     method: 'POST',
                     body: formData,
