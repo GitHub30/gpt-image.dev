@@ -147,7 +147,9 @@
     <form id="editForm" enctype="multipart/form-data">
         <details>
             <summary>Set api key</summary>
-            <input type="text" id="key" name="key">
+            key: <input type="text" id="key" name="key">
+            size: <input type="text" id="size" name="size" value="1024x1536" placeholder="1024x1024, 1024x1536, 1024x1024, auto">
+            quality: <input type="text" id="quality" name="quality" value="low" placeholder="low, medium, high">
         </details>
         <!-- 複数ファイル選択 -->
         <label>
@@ -193,6 +195,8 @@
             const resultEl = document.getElementById('result');
             const submit = document.getElementById('submit');
             const key = document.getElementById('key');
+            const size = document.getElementById('size');
+            const quality = document.getElementById('quality');
             const cf_turnstile_response = document.querySelector('[name="cf-turnstile-response"]')
 
             if (!imagesInput.files.length) {
@@ -214,6 +218,8 @@
             formData.append('prompt', promptInput.value);
             formData.append('cf_turnstile_response', cf_turnstile_response.value);
             if (key.value.length) formData.append('key', key.value);
+            if (size.value.length) formData.append('size', size.value);
+            if (quality.value.length) formData.append('quality', quality.value);
 
             try {
                 submit.disabled = true
