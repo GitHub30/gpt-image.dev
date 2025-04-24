@@ -83,11 +83,15 @@
                     method: 'POST',
                     body: formData,
                 });
+                if (!ok) {
+                    alert('you are rate limit exceeded')
+                }
                 // レスポンスを JSON として読み込み
                 const data = await resp.json();
                 resultEl.src = 'data:image/png;base64,' + data.data[0].b64_json;
             } catch (err) {
                 resultEl.textContent = 'Error: ' + err;
+                alert(err)
             }
         });
     </script>
