@@ -154,7 +154,7 @@
             Reference headshot photos:
             <input type="file" name="image[]" id="images" accept="image/*" multiple>
         </label>
-        <br>
+        <div id="preview"></div>
         <!-- テキストプロンプト -->
         <label>
             Prompt:
@@ -234,6 +234,29 @@
                 alert(err)
             }
         });
+
+        const input = document.getElementById('images');
+          const previewContainer = document.getElementById('preview');
+          input.addEventListener('change', () => {
+            // 既存のプレビューをクリア
+            previewContainer.innerHTML = '';
+        
+            // 選択されたファイルをループ
+            Array.from(input.files).forEach(file => {
+              if (!file.type.startsWith('image/')) return;
+        
+              const reader = new FileReader();
+              reader.addEventListener('load', e => {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '100px';
+                img.style.margin = '5px';
+                previewContainer.appendChild(img);
+              });
+        
+              reader.readAsDataURL(file); // Data URL として読み込む&#8203;:contentReference[oaicite:1]{index=1}
+            });
+          });
     </script>
 
 </body>
