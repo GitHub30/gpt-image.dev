@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Headshot generator by Open AI gpt-image-1</title>
+</head>
+
+<body>
+    <h1>AI Headshot generator by Open AI gpt-image-1</h1>
+    <a href="https://github.com/GitHub30/gpt-image.dev">GitHub repo</a>
+    <form id="editForm" enctype="multipart/form-data">
+        <details>
+            <summary>Set api key</summary>
+            <input type="text" id="key" name="key">
+        </details>
+        <!-- 複数ファイル選択 -->
+        <label>
+            Reference headshot photos:
+            <input type="file" name="image[]" id="images" accept="image/*" multiple>
+        </label>
+        <br>
+        <!-- テキストプロンプト -->
+        <label>
+            Prompt:
+            <br>
+            <textarea name="prompt" id="prompt" rows="4" cols="50" placeholder="Enter prompt"></textarea>
+        </label>
+        <div>
+            <h3>Sample Prompts</h3>
+            <p>
+                I created a man in his early 20s wearing casual clothing, sitting in a park surrounded by nature on a
+                sunny day and reading a book.
+                All reference images are of the same person.
+            </p>
+            <p>服はカジュアルで晴れた日に自然がある公園で座りながら本を読んでいる20代前半の男性を生成して。
+                参照画像はすべて同一人物です。</p>
+            <p>A model-like Japanese woman in her 20s is listening to music in a park surrounded by nature.
+                All reference images are of the same person.</p>
+            <p>
+                モデルのような20代の日本人女性が自然のある公園で音楽を聴いている。
+                参照画像はすべて同一人物です。
+            </p>
+        </div>
+        <button id="submit" type="submit">Generate</button>
+    </form>
+
+    <img id="result" style="max-width:100%"></img>
+
+    <script>
+        document.getElementById('editForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const imagesInput = document.getElementById('images');
+            const promptInput = document.getElementById('prompt');
+            const resultEl = document.getElementById('result');
+            const submit = document.getElementById('submit');
+            const key = document.getElementById('key');
+
+            if (!imagesInput.files.length) {
+                alert('select reference photos')
+                return
+            }
+            if (!promptInput.value.length) {
+                alert('Enter prompt')
+                return
+            }
+
+            // FormData を生成
+            const formData = new FormData();
+            // 複数ファイルを append
+            for (const file of imagesInput.files) {
+                formData.append('image[]', file);
+            }
+            // プロンプトを append
+            formData.append('prompt', promptInput.value);
+            if (key.value.length) formData.append('key', key.value);
+
+            try {
+                submit.disabled = true
+                submit.textContent = 'Generating...'
+                const resp = await fetch('https://xs679698.xsrv.jp/gpt.php', {
+                    method: 'POST',
+                    body: formData,
+                });
+                // レスポンスを JSON として読み込み
+                const data = await resp.json();
+                resultEl.src = 'data:image/png;base64,' + data.data[0].b64_json;
+            } catch (err) {
+                resultEl.textContent = 'Error: ' + err;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
