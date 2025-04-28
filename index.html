@@ -190,7 +190,7 @@
         <label>
             Prompt:
             <br>
-            <textarea name="prompt" id="prompt" rows="4" cols="50" placeholder="Enter prompt"></textarea>
+            <textarea name="prompt" id="_prompt" rows="4" cols="50" placeholder="Enter prompt"></textarea>
         </label>
         <div>
             <h3>Sample Prompts</h3>
@@ -225,7 +225,7 @@
             e.preventDefault();
 
             const imagesInput = document.getElementById('images');
-            const promptInput = document.getElementById('prompt');
+            const promptInput = document.getElementById('_prompt');
             const resultEl = document.getElementById('result');
             const submit = document.getElementById('submit');
             const key = document.getElementById('key');
