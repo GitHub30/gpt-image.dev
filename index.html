@@ -144,6 +144,21 @@
         max-width: 960px;
       }
     }
+    /* 必要に応じてフッターのデザインを調整 */
+    footer {
+      background: #f8f8f8;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+    footer a {
+      color: #333;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 
@@ -201,6 +216,11 @@
 
     <img id="result" style="max-width:100%"></img>
 
+  <footer>
+    <nav>
+      <a href="/tokushoho.html">特定商取引法に基づく表記</a>
+    </nav>
+  </footer>
     <script>
         document.getElementById('editForm').addEventListener('submit', async (e) => {
             e.preventDefault();
