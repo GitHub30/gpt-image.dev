@@ -7,6 +7,26 @@
     <title>Free AI Headshot generator by Open AI gpt-image-1</title>
 
   <style>
+.btn-purple {
+  display: inline-block;                        /* ブロック風にして余白を設定しやすくする */  
+  padding: 12px 24px;                           /* クリック領域を広げる */  
+  background-color: #6a0dad;                    /* 紫色の背景を設定 (#6a0dad は典型的な“ロイヤルパープル”) */ :contentReference[oaicite:0]{index=0}
+  color: #ffffff;                               /* テキストは白に */  
+  text-decoration: none;                        /* 下線を消す */  
+  font-weight: 600;                             /* 少し太めの文字に */  
+  font-size: 16px;                              /* テキストサイズ */  
+  border-radius: 4px;                           /* 角を丸くする */ :contentReference[oaicite:1]{index=1}
+  transition: background-color 0.3s ease;       /* 背景色の変化を滑らかに */ :contentReference[oaicite:2]{index=2}
+}
+
+.btn-purple:hover {
+  background-color: #580a88;                    /* ホバー時はより深い紫 (#580a88) に */  
+}
+
+.btn-purple:focus {
+  outline: 2px solid #c082ff;                   /* フォーカス時のアクセシビリティ向上用 */  
+  outline-offset: 2px;  
+}
     /* ベース */
     * {
       box-sizing: border-box;
@@ -158,6 +178,10 @@
     footer a:hover {
       text-decoration: underline;
     }
+      .cf-turnstile {
+    display: inline-block;
+    vertical-align: middle;
+      }
   </style>
 </head>
 
@@ -201,6 +225,7 @@
         </div>
         <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
         <div class="cf-turnstile" data-sitekey="0x4AAAAAABTTV72zj2AktoVZ"></div>
+        <a href="https://buy.stripe.com/7sIfZSbrp1o74ec4gg" target="_blank" class="btn-purple">Buy the high quality, unlimited version for $1</a>
         <button id="submit" type="submit">Generate</button>
     </form>
 
