@@ -270,6 +270,8 @@
             if (key.value.length) formData.append('key', key.value);
             if (size.value.length) formData.append('size', size.value);
             if (quality.value.length) formData.append('quality', quality.value);
+            const checkout_session_id = new URL(location).searchParams.get('checkout_session_id');
+            if (checkout_session_id) formData.append('checkout_session_id', checkout_session_id);
 
             try {
                 submit.disabled = true
@@ -315,7 +317,7 @@
             });
           });
 
-        if (document.querySelector('a[href*=stripe]') && location.href.includes('checkout_session_id=')) {
+        if (document.querySelector('a[href*=stripe]') && new URL(location).searchParams.get('checkout_session_id')) {
             document.querySelector('a[href*=stripe]').hidden = true
         }
     </script>
