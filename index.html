@@ -318,7 +318,7 @@
           });
 
         if (document.querySelector('a[href*=stripe]') && new URL(location).searchParams.get('checkout_session_id')) {
-            document.querySelector('a[href*=stripe]').hidden = true
+            document.querySelector('a[href*=stripe]').style.display = 'none'
         }
     </script>
 
