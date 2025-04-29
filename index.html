@@ -314,6 +314,10 @@
               reader.readAsDataURL(file); // Data URL として読み込む&#8203;:contentReference[oaicite:1]{index=1}
             });
           });
+
+        if (document.querySelector('a[href*=stripe]') && location.href.includes('checkout_session_id=')) {
+            document.querySelector('a[href*=stripe]').hidden = true
+        }
     </script>
 
 </body>
