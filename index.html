@@ -320,6 +320,7 @@
         function checkIsPaied() {
             if (document.querySelector('a[href*=stripe]') && new URL(location).searchParams.get('checkout_session_id')) {
                 fetch('https://xs679698.xsrv.jp/gpt-session.php?checkout_session_id=' + new URL(location).searchParams.get('checkout_session_id')).then(r=>r.json()).then(usedAt => {
+                    console.log(new Date(), 'usedAt:', usedAt)
                     if (usedAt === null) {
                         document.querySelector('a[href*=stripe]').style.display = 'none'
                         document.getElementById('submit').textContent = 'High Quality Generate'
