@@ -274,11 +274,13 @@ circle.animate(1, {duration: 150000})
             const cf_turnstile_response = document.querySelector('[name="cf-turnstile-response"]')
 
             if (!imagesInput.files.length) {
-                alert('select reference photos')
+                alert('Select reference photos')
+                document.querySelector('label:nth-of-type(1)').style.border = 'dashed 2px red'
                 return
             }
-            if (!promptInput.value.length) {
+            if (!promptInput.value.replaceAll(/[\r\n\t\s\u3000]/g, '').trim().length) {
                 alert('Enter prompt')
+                document.querySelector('label:nth-of-type(2)').style.border = 'dashed 2px red'
                 return
             }
 
