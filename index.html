@@ -306,13 +306,15 @@ circle.animate(1, {duration: 120000})
                     method: 'POST',
                     body: formData,
                 });
-                document.getElementById('progress').hidden = true
                 if (!resp.ok) {
                     alert('you are rate limit exceeded. please set up your key or be sponsor https://buymeacoffee.com/gpt.image.dev')
                     return;
                 }
                 // レスポンスを JSON として読み込み
                 const data = await resp.json();
+                if (document.getElementById('progress')) {
+                    document.getElementById('progress').hidden = true
+                }
                 resultEl.src = 'data:image/png;base64,' + data.data[0].b64_json;
             } catch (err) {
                 resultEl.textContent = 'Error: ' + err;
