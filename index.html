@@ -315,6 +315,10 @@ circle.animate(1, {duration: 150000})
                 if (document.getElementById('progress')) {
                     document.getElementById('progress').hidden = true
                 }
+                if (data.error) {
+                    alert(data.error.message)
+                    return;
+                }
                 resultEl.src = 'data:image/png;base64,' + data.data[0].b64_json;
             } catch (err) {
                 resultEl.textContent = 'Error: ' + err;
