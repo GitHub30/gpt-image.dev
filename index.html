@@ -225,7 +225,8 @@
         <a href="https://buy.stripe.com/7sIfZSbrp1o74ec4gg" class="btn-purple">Buy high quality unlimited version $1</a>
         <button id="submit" type="submit">Generate</button>
     </form>
-
+    <div id="progress" style="position: relative; max-width: 200px; max-height: 200px;"></div>
+    <script src="https://unpkg.com/progressbar.js" async defer></script>
     <img id="result" style="max-width:100%"></img>
 
   <footer>
@@ -234,6 +235,32 @@
     </nav>
   </footer>
     <script>
+function startProgress() {
+const circle = new ProgressBar.Circle('#progress', {
+  strokeWidth: 6,
+  color: '#8e44ad',
+  trailColor: '#eee',
+  trailWidth: 1,
+  text: {
+    value: '0%',
+    style: {
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
+      padding: 0,
+      margin: 0,
+      transform: 'translate(-50%, -50%)',
+      fontSize: '1.5rem'
+    }
+  },
+  step: function(state, bar) {
+    bar.setText((bar.value() * 100).toFixed(0) + '%');
+  }
+})
+
+circle.animate(1, {duration: 120000})
+}
+        
         document.getElementById('editForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -274,10 +301,12 @@
                 submit.disabled = true
                 submit.textContent = 'Generating... may take a few minutes.'
                 const url = new URL(location).searchParams.get('url') ?? 'https://xs679698.xsrv.jp/gpt.php'
+                startProgress()
                 const resp = await fetch(url, {
                     method: 'POST',
                     body: formData,
                 });
+                document.getElementById('progress').hidden = true
                 if (!resp.ok) {
                     alert('you are rate limit exceeded. please set up your key or be sponsor https://buymeacoffee.com/gpt.image.dev')
                     return;
