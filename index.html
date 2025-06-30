@@ -310,6 +310,7 @@ circle.animate(1, {duration: 150000})
                 });
                 if (!resp.ok) {
                     alert('you are rate limit exceeded. please set up your key or be sponsor https://buymeacoffee.com/gpt.image.dev')
+                    location = 'https://buy.stripe.com/7sIfZSbrp1o74ec4gg'
                     return;
                 }
                 // レスポンスを JSON として読み込み
@@ -319,6 +320,7 @@ circle.animate(1, {duration: 150000})
                 }
                 if (data.error) {
                     alert(data.error.message)
+                    location = 'https://buy.stripe.com/7sIfZSbrp1o74ec4gg'
                     return;
                 }
                 resultEl.src = 'data:image/png;base64,' + data.data[0].b64_json;
